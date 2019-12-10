@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <title>Boggle</title>
+</head>
+
+<body>
+  <div class="header">
+  	<div class="title">
+    	<h2></h2>
+    	<h1>Boggle</h1>
+  	</div>
+  </div>
+  <div id="app" class="content">
+    <div v-show="game">
+		<div id="instructions">
+			Welcome to Boggle!
+		</div>
+		
+		<div id="timer">
+			3:00
+		</div>
+		<div id="gameWrapper">
+			<div id="board">
+				<div v-for="row in letters" class="row">
+					<div v-for="letter in row" class="die">
+						{{letter}}
+					</div>
+				</div>
+			</div>
+			<div id="enteredWords">
+				Entered words: 
+				<div id="enteredWordsList">
+					<div v-for="word in enteredWords" class="enteredWord" v-bind:class="{ wrong: !word.isValid }">
+						{{word.word}}
+					</div>
+				</div>
+			</div>
+			<div id="possibleWords" v-if="gameFinished">
+				Possible words: 
+				<div id="possibleWordsList">
+					<div v-for="word in validWords" class="validWord">
+						{{word}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="input">
+			Input your words here: <input type="text" v-bind:class="{disabled: !gameActive}" name="wordInput" id="wordInput" v-model="typedWord" v-on:keyup.enter="saveWord" disabled/>
+		</div>
+		
+		<div id="controls">
+			Rows & Columns (2-12): <input type="number" name="" id="rows" style="width: 30px"/>
+			<button @click="startGame" id="startGameButton">Start Game</button>
+			 <div id="score">Score: {{score}}</div>
+			 <div v-if="gameFinished">
+				Enter your name to save your score to the scoreboard: <input type="text" v-model="name"/><button @click="saveScore">Submit</button>
+			 </div>
+		</div>
+    </div>
+    <div v-show="!game">
+    	<div class="title">
+    		Leaderboard
+    	</div>
+    	<div id="scoreList" v-for="score in scores">
+    		{{score.name}} : {{score.score}} <button @click="challenge(score.board)">Challenge Score</button>
+    	</div>
+    </div>
+	  <div class="footer">
+	    <a href="https://github.com/BYUCS260/midterm-2-mcsederberg">Source</a>
+	    <button @click="toggleView" id="toggleView">Leaderboard</button>
+	  </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.7/vue.js" integrity="sha256-g+Q8DFAmG5+eyRPSydX0LY4TfjsL11XSDrIGerbbEdA=" crossorigin="anonymous"></script>
+  <script src="boggle.js"></script>
+</body>
+
+</html>

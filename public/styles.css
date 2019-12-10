@@ -1,0 +1,88 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  background: #fff;
+  padding: 0px;
+  margin: 0px;
+}
+
+body, html, #app{
+  /*height: 100%;*/
+  text-align: center;
+}
+
+/* Header */
+.header {
+  display: flex;
+  padding: 20px 100px 0px 100px;
+}
+
+.title {
+  margin-top: 10px;
+  margin: auto;
+}
+
+.title h1, .title h2 {
+  margin: 0px;
+}
+
+
+/* Footer */
+.footer {
+  height: 50px;
+  padding: 20px 100px 0px 100px;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+}
+
+.footer a {
+  color: #000;
+}
+
+#board{
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background: cornflowerblue;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.row{
+  display: flex;
+  justify-content: space-around;
+}
+.die{
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  background: white;
+  font-weight: bold;
+  font-size:x-large;
+}
+#wordInput{
+  margin-bottom:10px;
+}
+#enteredWords{
+  width: 250px;
+  height: 250px;
+}
+.wrong{
+  text-decoration: line-through;
+}
+#enteredWordsList, #possibleWordsList{
+  overflow-y: scroll;
+  height: 240px;
+}
+#gameWrapper{
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  justify-content: center;
+}
